@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/', async (req, res)=>{
   try {
     const productos = await Productos.find({})   // todos los productos
-    res.render('../views/home.html', { productos })    // ../views/home.html, 
+    res.render('home.html', { productos })    // ../views/home.html, 
   } catch (err) {                                // se le pasa { productos:productos }
     res.status(500).send({err})
   }
