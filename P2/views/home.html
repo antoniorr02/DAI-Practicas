@@ -4,22 +4,21 @@
 
 <div class="container">
     <div class="row">
-        {% if productos.length > 0 %}
-        {% for producto in productos %}
+        {% if categorias.length > 0 %}
+        {% for categoria in categorias %}
         <div class="col-md-4">
-            <div class="card mb-4" style="width: 18rem;">
-                <img src="{{ producto.image }}" class="card-img-top" alt="{{ producto.title }}">
+            <div class="card mb-4" id="card_producto">
+                <img src="images/{{ categoria }}" class="card-img-top" alt="{{ categoria }}">
                 <div class="card-body">
-                    <h5 class="card-title">{{ producto.title }}</h5>
-                    <p class="card-text">{{ producto.description }}</p>
-                    <p class="card-text"><strong>Price: </strong>${{ producto.price }}</p>
-                    <a href="#" class="btn btn-primary">Buy Now</a>
+                    <h5 class="card-title">{{ categoria }}</h5>
+                    <hr>
+                    <a href="/categoria/{{ categoria }}" class="btn btn-view-items">View items</a>
                 </div>
             </div>
         </div>
         {% endfor %}
         {% else %}
-        <p>No hay productos</p>
+        <p>No hay categorias</p>
         {% endif %}
     </div>
 </div>
