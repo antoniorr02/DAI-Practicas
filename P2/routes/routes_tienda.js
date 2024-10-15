@@ -17,9 +17,18 @@ router.get('/', async (req, res) => {
 router.get('/buscar', async (req, res) => {
   try {
     const query = req.query.query; // Obtiene el término de búsqueda
-    const productos = await Productos.find({ title: { $regex: query, $options: 'i' } }); // Filtra por título
-    // Usamos 'distinct' para obtener las categorías únicas de los productos
+    // Buscar productos que coincidan con el título o la descripción
+    const productos = await Productos.find({
+      $or: [
+        { title: { $regex: query, $options: 'i' } },  // Búsqueda en el título (insensible a mayúsculas)
+        { description: { $regex: query, $options: 'i' } }  // Búsqueda en la descripción
+      ]
+    });
+    
+    // Obtener categorías únicas
     const categorias = await Productos.distinct('category');
+    
+    // Renderizar resultados de búsqueda
     res.render('resultado_busqueda.html', { productos, query, categorias }); // Renderiza la vista con los resultados
   } catch (err) {
     res.status(500).send({ err }); // Manejo de errores
@@ -55,6 +64,34 @@ router.get('/detalles/:id', async (req, res) => {
   } catch (err) {
       res.status(500).send({ err }); // Manejo de errores
   }
+});
+
+// Ruta para agregar productos al carrito
+router.post('/carrito/agregar', async (req, res) => {
+  try {
+    const productoId = req.body.producto_id;   // Obtenemos el ID del producto del formulario
+    const producto = await Productos.findById(productoId);   // Buscamos el producto en la base de datos
+
+    if (!req.session.cart) {
+      req.session.cart = [];  // Si no existe carrito, lo creamos
+    }
+
+    req.session.cart.push(producto);  // Agregamos el producto al carrito
+
+    const productos = req.session.cart;  // Agregamos el producto al carrito
+    const categorias = await Productos.distinct('category');
+    res.render('carrito.html', { productos, categorias }); // Pasamos el carrito a la vista
+  } catch (err) {
+    res.status(500).send({ err });  // Manejo de errores
+  }
+});
+
+
+// Ruta para mostrar el carrito
+router.get('/carrito', async (req, res) => {
+  const productos = req.session.cart;  // Agregamos el producto al carrito
+  const categorias = await Productos.distinct('category');
+  res.render('carrito.html', { productos, categorias }); // Pasamos el carrito a la vista
 });
 
 export default router

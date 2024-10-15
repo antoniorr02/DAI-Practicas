@@ -1,10 +1,21 @@
 import express   from "express"
 import nunjucks  from "nunjucks"
-      
+import session from "express-session"
 import connectDB from "./model/db.js"
+
 connectDB()
 
 const app = express()
+
+// Configuración de las sesiones
+app.use(session({
+	secret: 'my-secret',      // a secret string used to sign the session ID cookie
+	resave: false,            // don't save session if unmodified
+	saveUninitialized: false  // don't create session until something stored
+}))
+
+// Habilitar express.urlencoded para procesar datos de formularios URL encoded
+app.use(express.urlencoded({ extended: true }));
 
 const IN = process.env.IN || 'development'
 
@@ -18,10 +29,7 @@ app.set('view engine', 'html')
 
 app.use(express.static('public'))     // directorio public para archivos
 
-// test para el servidor
-// app.get("/", (req, res) => {
-//   res.render('home.html');
-// });
+
 
 // Las demas rutas con código en el directorio routes
 import TiendaRouter from "./routes/routes_tienda.js"

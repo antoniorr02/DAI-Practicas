@@ -8,7 +8,10 @@
     <h2>{{ producto.title }}</h2>
     <p>{{ producto.description }}</p>    <hr>    
     <p>Precio: ${{ producto.price }}</p>
-    <a href="#" class="btn btn-success">Add to Cart</a>
-    <a href="#" class="btn btn-secondary">Back to Categories</a>
+    <form action="/carrito/agregar" method="POST">
+        <input type="hidden" name="producto_id" value="{{ producto._id }}">
+        <button type="submit" class="btn btn-success">Añadir al Carrito</button>
+    </form>
+    <a href="/categoria/{{ producto.category }}" class="btn btn-secondary">Back to Categories</a>
 </div>
 {% endblock %}

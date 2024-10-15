@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container">
+    <h2>Tu Carrito de Compras</h2>
+
+    {% if productos.length > 0 %}
+    <ul class="list-group mb-3">
+        {% for producto in productos %}
+        <li class="list-group-item d-flex justify-content-between lh-sm">
+            <div>
+                <h6 class="my-0">{{ producto.title }}</h6>
+                <small class="text-muted">{{ producto.description }}</small>
+            </div>
+            <span class="text-muted">${{ producto.price }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Total: ${{ productos | sum('price') }}</h3>
+    <a href="#" class="btn btn-primary">Checkout</a>
+    {% else %}
+    <p>Tu carrito está vacío.</p>
+    {% endif %}
+</div>
+{% endblock %}
