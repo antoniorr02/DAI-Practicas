@@ -76,11 +76,51 @@ router.post('/carrito/agregar', async (req, res) => {
       req.session.cart = [];  // Si no existe carrito, lo creamos
     }
 
-    req.session.cart.push(producto);  // Agregamos el producto al carrito
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = req.session.cart.find(item => item.id === producto.id);
 
-    const productos = req.session.cart;  // Agregamos el producto al carrito
-    const categorias = await Productos.distinct('category');
-    res.render('carrito.html', { productos, categorias }); // Pasamos el carrito a la vista
+    if (productoExistente) {
+      // Si ya está en el carrito, incrementamos la cantidad
+      productoExistente.quantity += 1;
+    } else {
+      // Si no está en el carrito, lo agregamos con cantidad 1
+      req.session.cart.push({ ...producto.toObject(), quantity: 1 });
+    }
+
+    //req.session.cart.push(producto);  // Agregamos el producto al carrito
+
+    // const productos = req.session.cart;  // Agregamos el producto al carrito
+    // const categorias = await Productos.distinct('category');
+    res.redirect('/carrito'); // Pasamos el carrito a la vista
+  } catch (err) {
+    res.status(500).send({ err });  // Manejo de errores
+  }
+});
+
+// Ruta para quitar productos al carrito
+router.post('/carrito/reducir', async (req, res) => {
+  try {
+    const productoId = req.body.producto_id;   // Obtenemos el ID del producto del formulario
+    const producto = await Productos.findById(productoId);   // Buscamos el producto en la base de datos
+
+    if (!req.session.cart) {
+      req.session.cart = [];  // Si no existe carrito, lo creamos
+    }
+
+    // Verificar si el producto ya está en el carrito
+    const productoExistente = req.session.cart.find(item => item.id === producto.id);
+
+    if (productoExistente) {
+      // Si ya está en el carrito, reducimos la cantidad
+      productoExistente.quantity -= 1;
+
+      // Si la cantidad llega a 0, eliminamos el producto del carrito
+      if (productoExistente.quantity <= 0) {
+        req.session.cart = req.session.cart.filter(item => item.id !== productoExistente.id);
+      }
+    }
+
+    res.redirect('/carrito'); // Pasamos el carrito a la vista
   } catch (err) {
     res.status(500).send({ err });  // Manejo de errores
   }

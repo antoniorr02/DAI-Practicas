@@ -52,7 +52,6 @@ a.dropdown-item  {
     background-color: rgba(40, 167, 69, 0.1); /* Fondo ligeramente coloreado al pasar el mouse */
 }
 
-/*---------detalles.html----------*/
 #detalle-image {
     width: 300px; /* Ancho de la imagen */
     height: auto; /* Mantiene la proporción de la imagen */
@@ -61,3 +60,9 @@ a.dropdown-item  {
     float: right; /* Flota la imagen a la derecha */
     margin-left: 20px; /* Añade un margen a la izquierda para separar el texto de la imagen */
 }
+
+/*---------carrito.html----------*/
+.input-group .btn {
+    height: calc(1.5em + .75rem + 0.5em); /* Ajusta la altura para que coincida */
+}
+
