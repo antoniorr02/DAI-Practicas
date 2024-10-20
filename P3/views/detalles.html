@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container">
+    <br>
+    <img src="{{ producto.image }}" id="detalle-image" class="card-img-top" alt="{{ producto.title }}">
+    <br><br>
+    <h2>{{ producto.title }}</h2>
+    <p>{{ producto.description }}</p>    <hr>    
+    <p>Precio: ${{ producto.price }}</p>
+    <form action="/carrito/agregar" method="POST">
+        <input type="hidden" name="producto_id" value="{{ producto._id }}">
+        <button type="submit" class="btn btn-success">Añadir al Carrito</button>
+    </form>
+    <a href="/categoria/{{ producto.category }}" class="btn btn-secondary">Back to Categories</a>
+</div>
+{% endblock %}
