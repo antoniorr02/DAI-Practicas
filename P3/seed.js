@@ -27,8 +27,9 @@ async function Inserta_datos_en_colección(colección, url) {
         const datos = await fetch(url).then(res => res.json());
         const database = client.db(dbName);
         const collect = database.collection(colección);
+        await collect.deleteMany({});  // Elimina todos los documentos
         const options = { ordered: true };
-        const result = await collect.insertMany(datos, options);
+        const result = await collect.insertMany(datos, options); // TO DO: Encriptar las contraseñas al insertar.
         console.log(`${result.insertedCount} documents were inserted`);
 
         return `${datos.length} datos traidos para ${colección}`;

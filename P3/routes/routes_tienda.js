@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     // Usamos 'distinct' para obtener las categorías únicas de los productos
     const categorias = await Productos.distinct('category');
     // Renderizamos la vista 'home.html' pasando las categorías como contexto
-    res.render('home.html', { categorias });
+    res.render('home.html', { categorias, usuario: req.username });
   } catch (err) {                                
     res.status(500).send({ err });
   }
@@ -29,7 +29,7 @@ router.get('/buscar', async (req, res) => {
     const categorias = await Productos.distinct('category');
     
     // Renderizar resultados de búsqueda
-    res.render('resultado_busqueda.html', { productos, query, categorias }); // Renderiza la vista con los resultados
+    res.render('resultado_busqueda.html', { productos, query, categorias, usuario: req.username }); // Renderiza la vista con los resultados
   } catch (err) {
     res.status(500).send({ err }); // Manejo de errores
   }
@@ -42,7 +42,7 @@ router.get('/categoria/:categoria', async (req, res) => {
     const productos = await Productos.find({ category: categoria }); // Filtra los productos por categoría
     // Usamos 'distinct' para obtener las categorías únicas de los productos
     const categorias = await Productos.distinct('category');
-    res.render('categoria.html', { productos, categorias }); // Renderiza la vista 'categoria.html' con los productos
+    res.render('categoria.html', { productos, categorias, usuario: req.username }); // Renderiza la vista 'categoria.html' con los productos
   } catch (err) {
     res.status(500).send({ err }); // Manejo de errores
   }
@@ -60,7 +60,7 @@ router.get('/detalles/:id', async (req, res) => {
       // Usamos 'distinct' para obtener las categorías únicas de los productos
       const categorias = await Productos.distinct('category');
 
-      res.render('detalles.html', { producto, categorias }); // Renderiza la vista 'producto.html' con el producto encontrado
+      res.render('detalles.html', { producto, categorias, usuario: req.username }); // Renderiza la vista 'producto.html' con el producto encontrado
   } catch (err) {
       res.status(500).send({ err }); // Manejo de errores
   }
@@ -131,7 +131,7 @@ router.post('/carrito/reducir', async (req, res) => {
 router.get('/carrito', async (req, res) => {
   const productos = req.session.cart;  // Agregamos el producto al carrito
   const categorias = await Productos.distinct('category');
-  res.render('carrito.html', { productos, categorias }); // Pasamos el carrito a la vista
+  res.render('carrito.html', { productos, categorias, usuario: req.username }); // Pasamos el carrito a la vista
 });
 
 export default router

@@ -2,6 +2,8 @@ import express   from "express"
 import nunjucks  from "nunjucks"
 import session from "express-session"
 import connectDB from "./model/db.js"
+import cookieParser from "cookie-parser"
+import jwt from "jsonwebtoken"
 
 connectDB()
 
@@ -13,6 +15,19 @@ app.use(session({
 	resave: false,            // don't save session if unmodified
 	saveUninitialized: false  // don't create session until something stored
 }))
+
+app.use(cookieParser())
+
+// middleware
+const autentificación = (req, res, next) => {
+	const token = req.cookies.access_token;
+	if (token) {
+		const data = jwt.verify(token, process.env.SECRET_KEY);
+		req.username = data.usuario  // username en el request
+	}
+	next()
+}
+app.use(autentificación)
 
 // Habilitar express.urlencoded para procesar datos de formularios URL encoded
 app.use(express.urlencoded({ extended: true }));
@@ -33,7 +48,9 @@ app.use(express.static('public'))     // directorio public para archivos
 
 // Las demas rutas con código en el directorio routes
 import TiendaRouter from "./routes/routes_tienda.js"
+import rutasUsuarios from './routes/usuarios.js'
 app.use("/", TiendaRouter);
+app.use("/usuarios", rutasUsuarios);
 
 
 const PORT = process.env.PORT || 8000;
