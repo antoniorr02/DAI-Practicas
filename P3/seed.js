@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import bcrypt from 'bcrypt'; 
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,11 +29,20 @@ async function Inserta_datos_en_colección(colección, url) {
         const database = client.db(dbName);
         const collect = database.collection(colección);
         await collect.deleteMany({});  // Elimina todos los documentos
+
+        if (colección === 'usuarios') {
+            // Encripta las contraseñas antes de insertar
+            const saltRounds = 10;  // Número de rondas para saltear
+            for (const usuario of datos) {
+                usuario.password = await bcrypt.hash(usuario.password, saltRounds);
+            }
+        }
+
         const options = { ordered: true };
-        const result = await collect.insertMany(datos, options); // TO DO: Encriptar las contraseñas al insertar.
+        const result = await collect.insertMany(datos, options);
         console.log(`${result.insertedCount} documents were inserted`);
 
-        return `${datos.length} datos traidos para ${colección}`;
+        return `${datos.length} datos traídos para ${colección}`;
     } catch (err) {
         console.error(`Error en fetch de ${colección}:`, err.message);
         throw new Error(`Error en fetch de ${colección}: ${err.message}`);

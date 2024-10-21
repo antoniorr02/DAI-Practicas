@@ -24,13 +24,10 @@ router.post('/login', async (req, res) => {
     }
 
     // Comparar la contraseña ingresada con la almacenada
-    // const passwordMatch = await bcrypt.compare(password, user.password);
-    // if (!passwordMatch) {
-    //   return res.status(401).send('Contraseña incorrecta');
-    // }
-    if (password !== user.password) {
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
       return res.status(401).send('Contraseña incorrecta');
-  }
+    }
 
     // Generar el token JWT
     const token = jwt.sign({ usuario: user.username }, process.env.SECRET_KEY);
