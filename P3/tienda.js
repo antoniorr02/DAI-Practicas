@@ -24,6 +24,7 @@ const autentificación = (req, res, next) => {
 	if (token) {
 		const data = jwt.verify(token, process.env.SECRET_KEY);
 		req.username = data.usuario  // username en el request
+		req.admin = data.admin
 	}
 	next()
 }

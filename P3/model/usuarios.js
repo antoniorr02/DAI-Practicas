@@ -79,6 +79,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  admin: {
+    type: Boolean,
+    default: false,
+    required: false
+  },
   __v: {
     type: Number,
     default: 0,

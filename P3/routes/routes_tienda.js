@@ -60,7 +60,7 @@ router.get('/detalles/:id', async (req, res) => {
       // Usamos 'distinct' para obtener las categorías únicas de los productos
       const categorias = await Productos.distinct('category');
 
-      res.render('detalles.html', { producto, categorias, usuario: req.username }); // Renderiza la vista 'producto.html' con el producto encontrado
+      res.render('detalles.html', { producto, categorias, usuario: req.username, admin: req.admin }); // Renderiza la vista 'producto.html' con el producto encontrado
   } catch (err) {
       res.status(500).send({ err }); // Manejo de errores
   }
@@ -132,6 +132,33 @@ router.get('/carrito', async (req, res) => {
   const productos = req.session.cart;  // Agregamos el producto al carrito
   const categorias = await Productos.distinct('category');
   res.render('carrito.html', { productos, categorias, usuario: req.username }); // Pasamos el carrito a la vista
+});
+
+// Editar productos
+router.post('/productos/:id/editar', async (req, res) => {
+  try {
+    if (!req.admin) { // Verificar si el usuario tiene permisos de administrador
+      return res.status(403).send("Acceso denegado");
+    }
+
+    const { title, price } = req.body; // Obtener el nuevo título y precio del formulario
+
+    // Validar que el título comience con mayúscula
+    if (!/^[A-ZÁÉÍÓÚÑ].*/.test(title)) {
+      return res.status(400).send("El título debe comenzar con una letra mayúscula");
+    }
+
+    // Actualizar el producto en la base de datos
+    const productoActualizado = await Productos.findByIdAndUpdate( req.params.id, { title, price }, { new: true, runValidators: true });
+
+    if (!productoActualizado) {
+      return res.status(404).send("Producto no encontrado");
+    }
+
+    res.redirect(`/detalles/${req.params.id}`); // Redirigir a la página de detalles del producto actualizado
+  } catch (err) {
+    res.status(500).send({ err });
+  }
 });
 
 export default router

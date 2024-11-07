@@ -30,7 +30,7 @@ router.post('/login', async (req, res) => {
     }
 
     // Generar el token JWT
-    const token = jwt.sign({ usuario: user.username }, process.env.SECRET_KEY);
+    const token = jwt.sign({ usuario: user.username, admin:user.admin }, process.env.SECRET_KEY);
 
     // Establecer la cookie con el token
     res.cookie('access_token', token, {
