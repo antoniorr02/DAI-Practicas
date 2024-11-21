@@ -40,3 +40,20 @@
 {"level":"info","message":"PUT /api/ratings/6716188faeefa643f1858259 - 2024-11-21T07:51:01.825Z","timestamp":"2024-11-21T07:51:01.825Z"}
 {"level":"info","message":"GET /api/ratings/6716188faeefa643f1858259 - 2024-11-21T07:51:04.554Z","timestamp":"2024-11-21T07:51:04.554Z"}
 {"level":"info","message":"PUT /api/ratings/6716188faeefa643f1858259 - 2024-11-21T07:51:11.851Z","timestamp":"2024-11-21T07:51:11.851Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:07:45.834Z","timestamp":"2024-11-21T08:07:45.835Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f18582 - 2024-11-21T08:08:36.434Z","timestamp":"2024-11-21T08:08:36.434Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:13:20.103Z","timestamp":"2024-11-21T08:13:20.104Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f18582 - 2024-11-21T08:13:23.520Z","timestamp":"2024-11-21T08:13:23.520Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:14:04.477Z","timestamp":"2024-11-21T08:14:04.478Z"}
+{"level":"info","message":"GET /api/ratings/6716188faeefa643f185825 - 2024-11-21T08:14:08.630Z","timestamp":"2024-11-21T08:14:08.630Z"}
+2024-11-21T08:14:08.637Z error: Error al obtener ratings Cast to ObjectId failed for value "6716188faeefa643f185825" (type string) at path "_id" for model "productos"
+2024-11-21T08:22:29.220Z info: PUT /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:22:29.219Z
+2024-11-21T08:22:34.126Z info: GET /api/ratings/6716188faeefa643f185825 - 2024-11-21T08:22:34.126Z
+2024-11-21T08:23:30.374Z info: GET /api/ratings/6716188faeefa643f185825 - 2024-11-21T08:23:30.373Z
+2024-11-21T08:26:25.165Z info: GET /api/ratings - 2024-11-21T08:26:25.163Z
+2024-11-21T08:26:27.644Z info: PUT /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:26:27.644Z
+2024-11-21T08:26:33.494Z info: GET /api/ratings/6716188faeefa643f1858259 - 2024-11-21T08:26:33.494Z
+2024-11-21T08:26:36.881Z info: GET /api/ratings/6716188faeefa643f185825 - 2024-11-21T08:26:36.881Z
+2024-11-21T08:26:36.887Z error: Error al obtener ratings Cast to ObjectId failed for value "6716188faeefa643f185825" (type string) at path "_id" for model "productos"
+2024-11-21T08:27:01.090Z info: GET /api/ratings/6716188faeefa643f185825 - 2024-11-21T08:27:01.089Z
+2024-11-21T08:27:01.111Z error: Error al obtener ratings Cast to ObjectId failed for value "6716188faeefa643f185825" (type string) at path "_id" for model "productos"

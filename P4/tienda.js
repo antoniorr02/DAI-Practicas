@@ -4,7 +4,7 @@ import session from "express-session"
 import connectDB from "./model/db.js"
 import cookieParser from "cookie-parser"
 import jwt from "jsonwebtoken"
-import winston from 'winston';
+import logger from "./logger.js"
 
 
 connectDB()
@@ -12,23 +12,6 @@ connectDB()
 const app = express()
 
 app.use(express.json()); // Middleware para decodificar JSON
-
-const logger = winston.createLogger({
-	level: 'info',
-	format: winston.format.combine(
-	  winston.format.timestamp(),
-	  winston.format.json()
-	),
-	transports: [
-	  new winston.transports.Console(),
-	  new winston.transports.File({ filename: 'logs/tienda.log' })
-	]
-  });
-  
-  app.use((req, res, next) => {
-	logger.info(`${req.method} ${req.url} - ${new Date().toISOString()}`);
-	next();
-  });
 
 // Configuración de las sesiones
 app.use(session({
@@ -67,6 +50,10 @@ app.set('view engine', 'html')
 app.use(express.static('public'))     // directorio public para archivos
 
 
+app.use((req, res, next) => {
+	logger.info(`${req.method} ${req.url} - ${new Date().toISOString()}`);
+	next();
+});
 
 // Las demas rutas con código en el directorio routes
 import TiendaRouter from "./routes/routes_tienda.js"

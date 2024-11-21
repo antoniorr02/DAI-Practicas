@@ -1,0 +1,81 @@
+/*---------base.html----------*/
+
+/* Cambiar el color del texto del navbar a blanco y hacerlo negrita */
+.navbar {
+    background-color: hsl(160, 73%, 36%) !important; /* Un color azul verdoso */
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link,
+.navbar .dropdown-item {
+    color: white;
+    font-weight: bold; /* Hacer el texto negrita */
+}
+
+a.dropdown-item  {
+    color: black !important;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #3CB371; /* Un color más claro al pasar el ratón */
+}
+
+/* Cambiar el color del botón de búsqueda a verde */
+.btn-outline-success {
+    color: white;
+    background-color: #28a745; /* Verde para el botón */
+    border-color: #28a745;
+}
+
+.btn-outline-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34; /* Más oscuro al pasar el ratón */
+}
+
+/* Cambiar el color de la barra de búsqueda (opcional, si quieres modificar el input) */
+.form-control {
+    border: 1px solid #28a745;
+}
+
+/*---------home.html y categorias.html----------*/
+#card_producto {
+    margin: 20px 20px; /* Margen entre las cajas de productos y/o categorías*/
+}
+
+.btn-view-items {
+    color: #28a745; /* Color del texto */
+    border-color: #28a745; /* Color del borde */
+    background-color: transparent; /* Fondo transparente */
+}
+
+.btn-view-items:hover {
+    background-color: rgba(40, 167, 69, 0.1); /* Fondo ligeramente coloreado al pasar el mouse */
+}
+
+#detalle-image {
+    width: 300px; /* Ancho de la imagen */
+    height: auto; /* Mantiene la proporción de la imagen */
+    max-width: 100%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    display: block; /* Para que el margen funcione correctamente */
+    float: right; /* Flota la imagen a la derecha */
+    margin-left: 20px; /* Añade un margen a la izquierda para separar el texto de la imagen */
+}
+
+/*---------carrito.html----------*/
+.input-group .btn {
+    height: calc(1.5em + .75rem + 0.5em); /* Ajusta la altura para que coincida */
+}
+
+/*---------estrellas.html----------*/
+.estrella {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.estrella.llena {
+    color: gold;
+}
+
+.estrella.vacia {
+    color: lightgray;
+}  

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="container">
+    <div class="row">
+        {% if categorias.length > 0 %}
+        {% for categoria in categorias %}
+        <div class="col-md-4">
+            <div class="card mb-4" id="card_producto">
+                <img src="images/{{ categoria }}" class="card-img-top" alt="{{ categoria }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ categoria }}</h5>
+                    <hr>
+                    <a href="/categoria/{{ categoria }}" class="btn btn-view-items">View items</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No hay categorias</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
