@@ -9,10 +9,10 @@ GET http://localhost:8000/api/ratings/6716188faeefa643f1858259
 ###
 
 # Modificar rating de un producto específico
-POST http://localhost:8000/api/ratings/6716188faeefa643f1858259
+PUT http://localhost:8000/api/ratings/6716188faeefa643f1858259
 Content-Type: application/json
 
 {
-  "rate": 4.5,
+  "rate": 4.6,
   "count": 100
 }
