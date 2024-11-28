@@ -2,12 +2,14 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt'; // Para el hash de contraseñas
 import Usuarios from '../model/usuarios.js'; // Modelo de usuarios
+import Productos from "../model/productos.js";
 
 const router = express.Router();
 
 // Mostrar formulario de login
-router.get('/login', (req, res) => {
-  res.render('login.html');
+router.get('/login', async (req, res) => {
+  const categorias = await Productos.distinct('category');
+  res.render('login.html', {categorias});
 });
 
 // Recoger datos del formulario de login
