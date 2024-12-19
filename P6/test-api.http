@@ -1,0 +1,18 @@
+# Obtener todos los ratings
+GET http://localhost:8000/api/ratings
+
+###
+
+# Obtener rating de un producto específico
+GET http://localhost:8000/api/ratings/6716188faeefa643f1858259
+
+###
+
+# Modificar rating de un producto específico
+PUT http://localhost:8000/api/ratings/6716188faeefa643f1858259
+Content-Type: application/json
+
+{
+  "rate": 4.6,
+  "count": 100
+}
