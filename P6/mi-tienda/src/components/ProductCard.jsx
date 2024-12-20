@@ -4,7 +4,7 @@ import "../App.css"
 
 const ProductCard = ({ product }) =>{
   return (
-   <div className="card text-center">
+    <div className="card w-64 bg-white shadow-lg rounded-lg overflow-hidden">    
      <div className="overflow">
        <img src={product.image} alt="Image1" className="card-img-top"></img>
      </div>
@@ -14,10 +14,10 @@ const ProductCard = ({ product }) =>{
         {product.description}    
         </p>
         <button
-            onClick={() => window.location.href = `/product/${product.id}`}
-            className="w-full text-center bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
-            Buy Now
-          </button>
+          onClick={() => window.location.href = `/product/${product.id}`}
+          className="w-full text-center bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
+          Buy Now
+        </button>
       </div> 
    </div>
   );
