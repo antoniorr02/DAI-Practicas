@@ -1,0 +1,25 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.card {
+  width: 18rem;
+  top: 70px;
+  bottom: 50px;
+}
+
+.card:hover {
+  box-shadow: 5px 10px 20px 1px rgba(0, 0, 0, 0.253) !important;
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  padding: 0.4rem;
+}
