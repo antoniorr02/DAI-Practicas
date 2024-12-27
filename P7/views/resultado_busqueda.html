@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="container">
+    <h2>Resultados de búsqueda para: "{{ query }}"</h2>
+    <div class="row">
+        {% if productos.length > 0 %}
+        {% for producto in productos %}
+        <div class="col-md-4">
+            <div class="card mb-4" id="card_producto">
+                <img src="{{ producto.image }}" class="card-img-top" alt="{{ producto.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.title }}</h5>
+                    <p>Precio: ${{ producto.price }}</p>
+                    <span class="stars" data-_id="{{ producto._id }}"></span>
+                    <hr>
+                    <a href="/detalles/{{ producto._id }}" class="btn btn-view-items">Buy Now</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No se encontraron productos para tu búsqueda.</p>
+        {% endif %}
+    </div>
+</div>
+<script src="/js/ratings.js" defer></script>
+{% endblock %}
