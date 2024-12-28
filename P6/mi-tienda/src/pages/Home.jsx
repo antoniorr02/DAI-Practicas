@@ -1,6 +1,8 @@
 import React from "react";
 import ProductCard from "../components/ProductCard";
 import useSWR from 'swr';
+import "../index.css"
+import "../App.css"
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

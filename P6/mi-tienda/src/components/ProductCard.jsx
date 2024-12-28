@@ -10,7 +10,7 @@ const ProductCard = ({ product }) =>{
      </div>
      <div className="card-body text-dark">
        <h4 className="card-title">{product.title}</h4>
-       <p className="card-text text-secondary">
+       <p className="card-text text-dark">
         {product.description}    
         </p>
         <button
