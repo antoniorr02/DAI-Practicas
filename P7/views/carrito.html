@@ -21,12 +21,12 @@
             </div>
             <div class="d-flex align-items-center">
                 <div class="input-group me-3" style="width: 120px;">
-                    <form action="/carrito/reducir" method="POST">
+                    <form action="/tienda/carrito/reducir" method="POST">
                         <input type="hidden" name="producto_id" value="{{ producto._id }}">
                         <button type="submit" class="btn btn-outline-secondary btn-sm">-</button>
                     </form>  
                     <input type="text" class="form-control text-center" value="{{ producto.quantity }}" id="quantity-{{ producto.id }}" readonly>
-                    <form action="/carrito/agregar" method="POST">
+                    <form action="/tienda/carrito/agregar" method="POST">
                         <input type="hidden" name="producto_id" value="{{ producto._id }}">
                         <button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
                     </form>                    

@@ -1,0 +1,5 @@
+:80
+
+handle_path /tienda/* {
+    reverse_proxy tienda:8000
+}

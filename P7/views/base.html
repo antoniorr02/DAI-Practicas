@@ -19,14 +19,14 @@
   <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="/">Store</a>
+        <a class="navbar-brand" href="/tienda/">Store</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="d-flex ms-auto">
-            <form class="d-flex me-2" role="search" action="/buscar" method="GET">
+            <form class="d-flex me-2" role="search" action="/tienda/buscar" method="GET">
               <input class="form-control me-2" type="search" name="query" placeholder="Search" aria-label="Search">
               <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
@@ -40,7 +40,7 @@
                 <ul class="dropdown-menu">
                   {% if categorias.length > 0 %}
                   {% for categoria in categorias %}
-                  <li><a class="dropdown-item" href="/categoria/{{ categoria }}">{{ categoria }}</a></li>
+                  <li><a class="dropdown-item" href="/tienda/categoria/{{ categoria }}">{{ categoria }}</a></li>
                   <li>
                     <hr class="dropdown-divider">
                   </li>
@@ -52,13 +52,13 @@
               </li>
               <li class="nav-item">
                 {% if usuario %}
-                <a class="nav-link" href="/usuarios/logout">Log out</a>
+                <a class="nav-link" href="/tienda/usuarios/logout">Log out</a>
                 {% else %}
-                <a class="nav-link" href="/usuarios/login">Login</a>
+                <a class="nav-link" href="/tienda/usuarios/login">Login</a>
                 {% endif %}
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/carrito">
+                <a class="nav-link" href="/tienda/carrito">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart" viewBox="0 0 16 16">
                     <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                   </svg>

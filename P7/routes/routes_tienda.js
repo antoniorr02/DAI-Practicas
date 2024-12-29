@@ -91,7 +91,7 @@ router.post('/carrito/agregar', async (req, res) => {
 
     // const productos = req.session.cart;  // Agregamos el producto al carrito
     // const categorias = await Productos.distinct('category');
-    res.redirect('/carrito'); // Pasamos el carrito a la vista
+    res.redirect('/tienda/carrito'); // Pasamos el carrito a la vista
   } catch (err) {
     res.status(500).send({ err });  // Manejo de errores
   }
@@ -120,7 +120,7 @@ router.post('/carrito/reducir', async (req, res) => {
       }
     }
 
-    res.redirect('/carrito'); // Pasamos el carrito a la vista
+    res.redirect('/tienda/carrito'); // Pasamos el carrito a la vista
   } catch (err) {
     res.status(500).send({ err });  // Manejo de errores
   }
