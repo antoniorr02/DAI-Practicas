@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const ide = ele.dataset._id; // ID del producto desde el atributo 'data-_id'
   
       // Realizamos un fetch al endpoint de ratings para el producto específico
-      fetch(`/api/ratings/${ide}`)
+      fetch(`/tienda/api/ratings/${ide}`)
           .then(response => {
               if (!response.ok) {
                   throw new Error(`Error al obtener los datos del API para ID: ${ide}`);
@@ -106,7 +106,7 @@ function Vota(evt) {
   ele.dataset.votado = 'true';
 
   // Realizamos el fetch para actualizar el rating en el servidor
-  fetch(`/api/ratings/${ide}`, {
+  fetch(`/tienda/api/ratings/${ide}`, {
       method: 'PUT',
       headers: {
           'Content-Type': 'application/json'
